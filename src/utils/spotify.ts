@@ -36,13 +36,11 @@ export async function nowPlaying(): Promise<Partial<SpotifyApi.CurrentlyPlayingR
       Authorization,
     },
   });
-  const { status } = response;
-  if (status === 204) {
-    return {};
-  } else if (status === 200) {
+  if (response.status === 200) {
     const data = await response.json();
     return data;
   }
+  await discard(response);
   return {};
 }
 
@@ -58,11 +56,14 @@ export async function topTrack({ index, timeRange = 'short_term' }: { index: num
       Authorization
     },
   });
-  const { status } = response;
-  if (status === 204) {
-    return null;
-  } else if (status === 200) {
+  if (response.status === 200) {
     const data = await response.json() as SpotifyApi.UsersTopTracksResponse;
     return data.items[0] ?? null;
   }
+  await discard(response);
+  return null;
+}
+
+async function discard(res: Response) {
+  try { await res.arrayBuffer(); } catch {}
 }

@@ -33,11 +33,11 @@ SPOTIFY_CLIENT_SECRET=1234567890
 
 5. Next, we need to retrieve a Refresh Token through [Authoration Code flow](https://developer.spotify.com/documentation/general/guides/authorization-guide/#authorization-code-flow).
 
-There is a node script, `generateRefreshToken.js` to get this for you. Run the following commands:
+There is a node script, `generateRefreshToken.ts` to get this for you. Run the following commands:
 
 ```bash
-npm install
-node ./generateRefreshToken.js # You will be asked to login to your spotify account
+pnpm install
+pnpm run setup # you will be asked to login to your spotify account
 ```
 
 6. Navigate to your deployment on Vercel and click on Settings, then click on "Environment Variables"

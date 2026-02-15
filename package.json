@@ -6,22 +6,19 @@
   "description": "Github profile",
   "main": "index.js",
   "scripts": {
-    "watch": "tsgo -pw tsconfig.json",
-    "build": "tsgo -p tsconfig.json"
+    "setup": "node generateRefreshToken.ts",
+    "build": "rolldown src/api/*.ts -d api -s \"inline\" -f esm --platform node"
   },
   "dependencies": {
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "typescript": "^5.9.3"
+    "@vercel/node": "^5.6.3",
+    "htm": "^3.1.1",
+    "preact-render-to-string": "^6.6.5"
   },
   "devDependencies": {
     "@types/node": "^22.19.11",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
     "@types/spotify-api": "^0.0.25",
-    "@typescript/native-preview": "7.0.0-dev.20260214.1",
     "open": "^7.2.1",
-    "prettier": "^2.0.5"
+    "rolldown": "1.0.0-rc.4"
   },
   "repository": {
     "type": "git",
@@ -33,5 +30,8 @@
   "bugs": {
     "url": "https://github.com/natemoo-re/natemoo-re/issues"
   },
-  "homepage": "https://github.com/natemoo-re/natemoo-re#readme"
+  "homepage": "https://github.com/natemoo-re/natemoo-re#readme",
+  "volta": {
+    "node": "22.22.0"
+  }
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import {html} from "htm/preact";
 
 const sizes = {
   large: 16,
@@ -24,7 +24,7 @@ const weights = {
   bold: 600,
 };
 
-const Text: React.FC<any> = ({
+const Text = ({
   children = "",
   weight = "default",
   family = "default",
@@ -33,9 +33,9 @@ const Text: React.FC<any> = ({
   style = {},
   ...props
 }) => {
-  return (
+  return html`
     <p
-      style={{
+      style=${{
         ...style,
         whiteSpace: "pre",
         fontSize: `${sizes[size as keyof typeof sizes]}px`,
@@ -44,11 +44,11 @@ const Text: React.FC<any> = ({
         color: colors[color as keyof typeof colors],
         fontWeight: weights[weight as keyof typeof weights],
       }}
-      {...props}
+      ...${props}
     >
-      {children}
+      ${children}
     </p>
-  );
+  `;
 };
 
 export default Text;

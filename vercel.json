@@ -1,0 +1,32 @@
+{
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "outputDirectory": ".",
+    "headers": [
+        {
+            "source": "/api/now-playing",
+            "headers": [
+                {
+                    "key": "Content-Type",
+                    "value": "image/svg+xml"
+                },
+                {
+                    "key": "Cache-Control",
+                    "value": "public, s-maxage=90, stale-while-revalidate=604800"
+                }
+            ]
+        },
+        {
+            "source": "/api/top-tracks",
+            "headers": [
+                {
+                    "key": "Content-Type",
+                    "value": "image/svg+xml"
+                },
+                {
+                    "key": "Cache-Control",
+                    "value": "public, s-maxage=259200, stale-while-revalidate=2592000"
+                }
+            ]
+        }
+    ]
+}

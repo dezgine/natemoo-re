@@ -1,21 +1,20 @@
-import { ReactNode } from "react";
-import { renderToStaticMarkup } from "react-dom/server";
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-import { Track } from "../components/Track.tsx";
+import { html } from 'htm/preact';
+import { render } from "preact-render-to-string";
+import { Track } from "../components/Track.ts";
 import { topTrack } from "../utils/spotify.ts";
 import { toBase64 } from "../utils/encoding.ts";
 
-export default {
-  async fetch(request: Request): Promise<Response> {
-    const url = new URL(request.url);
-
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+    const url = new URL(req.url, 'https://status.nmoo.dev/');
     const i = url.searchParams.get("i");
 
     const index = Number.parseInt(i ?? "", 10);
     const item = await topTrack({ index });
 
     if (!item) {
-      return new Response(null, { status: 404 });
+      return res.status(404).send(null);
     }
 
     // If `open` is present (any value, including empty), redirect if possible.
@@ -23,13 +22,10 @@ export default {
       const location = item?.external_urls?.spotify;
 
       if (location) {
-        return new Response(null, {
-          status: 302,
-          headers: { Location: location },
-        });
+        return res.redirect(302, location);
       }
 
-      return new Response(null, { status: 200 });
+      return res.status(200).send(null);
     }
 
     const { name: track } = item;
@@ -45,16 +41,6 @@ export default {
 
     const artist = (item.artists ?? []).map(({ name }) => name).join(", ");
 
-    const text = renderToStaticMarkup(
-      Track({ index, cover: coverImg, artist, track }) as ReactNode,
-    );
-
-    return new Response(text, {
-      status: 200,
-      headers: {
-        "Content-Type": "image/svg+xml",
-        "Cache-Control": "s-maxage=1, stale-while-revalidate",
-      },
-    });
-  },
-};
+    const text = render(html`<${Track} index=${index} cover=${coverImg} artist=${artist} track=${track} />`);
+    return res.status(200).send(text);
+  }
