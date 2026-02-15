@@ -1,7 +1,7 @@
 # Hey, I'm Nate! 👋🏻
 
 > **Radically empathetic technology illuminates our path to a just future**
-> 
+>
 > ✊🏻✊🏼✊🏽✊🏾✊🏿🏳️‍⚧️🇵🇸🏳️‍🌈
 
 Organizer of [Bombshell](https://github.com/bombshell-dev), a community-driven project to build beautiful, intuitive CLI tools that empower fellow creatives.
@@ -14,10 +14,9 @@ My passion for building high-polish, delightful devtools is informed by my backg
 
 ---
 
-| 🎵 Now Playing                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------ |
-| <a href="https://status.nmoo.dev/now-playing?open"><img src="https://status.nmoo.dev/now-playing" width="540" height="64"></a> |
-
+| 🎵 Now Playing                                                                                                                         |
+| -------------------------------------------------------------------------------------------------------------------------------------- |
+| <a href="https://status.nmoo.dev/api/now-playing?open"><img src="https://status.nmoo.dev/api/now-playing" width="540" height="64"></a> |
 
 <table>
   <thead>
@@ -27,15 +26,15 @@ My passion for building high-polish, delightful devtools is informed by my backg
   </thead>
   <tbody>
     <tr>
-      <td><a href="https://status.nmoo.dev/top-tracks?i=1&open"><img src="https://status.nmoo.dev/top-tracks?i=1" width="540" height="64"></a></td>
+      <td><a href="https://status.nmoo.dev/api/top-tracks?i=1&open"><img src="https://status.nmoo.dev/api/top-tracks?i=1" width="540" height="64"></a></td>
     </tr>
     <tr></tr> <!-- hide gray row -->
     <tr>
-      <td><a href="https://status.nmoo.dev/top-tracks?i=2&open"><img src="https://status.nmoo.dev/top-tracks?i=2" width="540" height="64"></a></td>
+      <td><a href="https://status.nmoo.dev/api/top-tracks?i=2&open"><img src="https://status.nmoo.dev/api/top-tracks?i=2" width="540" height="64"></a></td>
     </tr>
     <tr></tr> <!-- hide gray row -->
     <tr>
-      <td><a href="https://status.nmoo.dev/top-tracks?i=3&open"><img src="https://status.nmoo.dev/top-tracks?i=3" width="540" height="64"></a></td>
+      <td><a href="https://status.nmoo.dev/api/top-tracks?i=3&open"><img src="https://status.nmoo.dev/api/top-tracks?i=3" width="540" height="64"></a></td>
     </tr>
   </tbody>
 </table>
