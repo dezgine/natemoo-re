@@ -112,56 +112,17 @@ const css = `
     animation: progress calc(var(--duration) * 1ms) linear;
     animation-delay: calc(var(--progress) * -1ms);
   }
-  
-  .progress-bar,
-  #track,
-  #artist,
-  #cover {
-    opacity: 0;
-    animation: appear 300ms ease-out forwards;
-  }
 
-  #track {
-    animation-delay: 400ms;
-  }
-  #artist {
-    animation-delay: 500ms;
-  }
   .progress-bar {
-    animation-delay: 550ms;
     margin-top: 4px;
   }
 
   #cover {
-    animation-name: cover-appear;
-    animation-delay: 300ms;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 3px 10px rgba(0,0,0,0.05);
   }
 
   #cover:not([src]) {
     box-shadow: none;
-  }
-
-  @keyframes cover-appear {
-    from {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes appear {
-    from {
-      opacity: 0;
-      transform: translateX(-8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
   }
 
   @keyframes progress {
