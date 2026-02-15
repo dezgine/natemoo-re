@@ -23,7 +23,7 @@ export const Player = ({
     <${ReadmeImg} width="540" height="64">
       <style>${css}</style>
       <div
-        className=${isPlaying ? "disabled" : ""}
+        class="${isPlaying ? 'disabled' : 'active'}"
         style=${{
           "--duration": duration,
           "--progress": progress,
@@ -40,7 +40,7 @@ export const Player = ({
         >
           ${isPlaying ? "▶" : ""}
         </${Text}>
-        <img id="cover" src=${cover ?? undefined} width="48" height="48" />
+        <img id="cover" src="${cover ?? undefined}" width="48" height="48" />
         <div
           style=${{
             display: "flex",
@@ -53,12 +53,12 @@ export const Player = ({
           <${Text} id="track" weight="bold">
             ${track ?? ''}
           </${Text}>
-          <${Text} id="artist" color=${!track ? "gray" : undefined}>
+          <${Text} id="artist" color="${!track ? "gray" : undefined}">
             ${artist ?? "Nothing playing..."}
           </${Text}>
           ${track ? html`
-            <div className="progress-bar">
-              <div id="progress" className=${!isPlaying ? "paused" : ""} />
+            <div class="progress-bar">
+              <div id="progress" class="${isPlaying ? "playing" : "paused"}" />
             </div>
           ` : ''}
         </div>

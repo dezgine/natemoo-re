@@ -1,20 +1,19 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
-
-import { html } from 'htm/preact';
+import { html } from "htm/preact";
 import { render } from "preact-render-to-string";
-import { Track } from "../components/Track.ts";
-import { topTrack } from "../utils/spotify.ts";
-import { toBase64 } from "../utils/encoding.ts";
+import { Track } from "../src/components/Track.ts";
+import { topTrack } from "../src/utils/spotify.ts";
+import { toBase64 } from "../src/utils/encoding.ts";
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-    const url = new URL(req.url, 'https://status.nmoo.dev/');
+export default {
+  async fetch(request: Request) {
+    const url = new URL(request.url, "https://status.nmoo.dev/");
     const i = url.searchParams.get("i");
 
     const index = Number.parseInt(i ?? "", 10);
     const item = await topTrack({ index });
 
     if (!item) {
-      return res.status(404).send(null);
+      return new Response(null, { status: 404 });
     }
 
     // If `open` is present (any value, including empty), redirect if possible.
@@ -22,10 +21,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const location = item?.external_urls?.spotify;
 
       if (location) {
-        return res.redirect(302, location);
+        return Response.redirect(location, 302);
       }
 
-      return res.status(200).send(null);
+      return new Response(null, { status: 200 });
     }
 
     const { name: track } = item;
@@ -41,6 +40,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const artist = (item.artists ?? []).map(({ name }) => name).join(", ");
 
-    const text = render(html`<${Track} index=${index} cover=${coverImg} artist=${artist} track=${track} />`);
-    return res.status(200).send(text);
-  }
+    const text = render(
+      html`<${Track}
+        index=${index}
+        cover=${coverImg}
+        artist=${artist}
+        track=${track}
+      />`,
+    );
+    return new Response(text, {
+      status: 200,
+      headers: {
+        "Content-Type": "image/svg+xml",
+        "Cache-Control": "public, s-maxage=259200, stale-while-revalidate=2592000",
+      },
+    });
+  },
+};

@@ -27,7 +27,7 @@ export const Track = ({
         }}
       >
         <${Text} style=${{ width: '16px', marginRight: '16px' }} size="large" weight="bold">${index}</${Text}>
-        <img id="cover" src=${cover} width="48" height="48" />
+        <img id="cover" src="${cover}" width="48" height="48" />
         <div
           style=${{
             display: "flex",
@@ -40,7 +40,7 @@ export const Track = ({
           <${Text} id="track" weight="bold">
             ${`${track ?? ""} `.trim()}
           </${Text}>
-          <${Text} id="artist" color=${!track ? "gray" : undefined}>
+          <${Text} id="artist" color="${!track ? "gray" : undefined}">
             ${artist ?? "Nothing playing..."}
           </${Text}>
         </div>
