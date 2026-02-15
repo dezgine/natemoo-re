@@ -85,7 +85,6 @@ const css = `
 
   p {
     display: block;
-    opacity: 0;
   }
 
   .progress-bar {
