@@ -1,11 +1,5 @@
 {
     "$schema": "https://openapi.vercel.sh/vercel.json",
-    "outputDirectory": ".",
-    "functions": {
-        "api/*.js": {
-            "maxDuration": 10
-        }
-    },
     "headers": [
         {
             "source": "api/now-playing",
