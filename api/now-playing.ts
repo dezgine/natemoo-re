@@ -4,6 +4,9 @@ import { Player } from "../src/components/NowPlaying.ts";
 import { nowPlaying } from "../src/utils/spotify.ts";
 import { toBase64 } from "../src/utils/encoding.ts";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const t0 = Date.now();
 const mark = (m: string) => console.log(`${Date.now() - t0}ms ${m}`);
 
